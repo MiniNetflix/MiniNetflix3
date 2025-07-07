@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <title>Home Netflix Style</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Netflix Clone</h1>
+    <select id="menu" onchange="navigate()">
+      <option value="">-- Seleziona --</option>
+      <option value="film">Film</option>
+      <option value="serie">Serie TV</option>
+    </select>
+  </header>
+</body>
+<script>
+function navigate() {
+  const menu = document.getElementById('menu').value;
+  if (menu === 'film') window.location.href = 'film.html';
+  else if (menu === 'serie') window.location.href = 'serie.html';
+}
+</script>
+</html>

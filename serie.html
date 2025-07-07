@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <title>Serie TV - Netflix Style</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>📺 Serie TV</h1>
+  <label for="serie">Scegli una serie:</label>
+  <select id="serie" onchange="caricaSerie()">
+<option value="1">Serie 1</option>
+<option value="2">Serie 2</option>
+<option value="3">Serie 3</option>
+<option value="4">Serie 4</option>
+<option value="5">Serie 5</option>
+<option value="6">Serie 6</option>
+<option value="7">Serie 7</option>
+<option value="8">Serie 8</option>
+<option value="9">Serie 9</option>
+<option value="10">Serie 10</option>
+
+  </select>
+  <div id="stagioni"></div>
+  <div id="episodi"></div>
+  <br><a href="dashboard.html">🔙 Torna alla Dashboard</a>
+  <script>
+const serieEpisodi = {
+  "1": {
+    "1": [
+      { titolo: "Ep 1", link: "https://drive.google.com/file/d/ID_S1_1_1/preview" },
+      { titolo: "Ep 2", link: "https://drive.google.com/file/d/ID_S1_1_2/preview" },
+    ],
+    "2": [
+      { titolo: "Ep 1", link: "https://drive.google.com/file/d/ID_S1_2_1/preview" },
+      { titolo: "Ep 2", link: "https://drive.google.com/file/d/ID_S1_2_2/preview" },
+    ],
+    "3": [
+      { titolo: "Ep 1", link: "https://drive.google.com/file/d/ID_S1_3_1/preview" },
+      { titolo: "Ep 2", link: "https://drive.google.com/file/d/ID_S1_3_2/preview" },
+    ],
+  },
+  "2": {
+    "1": [
+      { titolo: "Ep 1", link: "https://drive.google.com/file/d/ID_S2_1_1/preview" },
+      { titolo: "Ep 2", link: "https://drive.google.com/file/d/ID_S2_1_2/preview" },
+    ],
+    "2": [
+      { titolo: "Ep 1", link: "https://drive.google.com/file/d/ID_S2_2_1/preview" },
+      { titolo: "Ep 2", link: "https://drive.google.com/file/d/ID_S2_2_2/preview" },
+    ],
+    "3": [
+      { titolo: "Ep 1", link: "https://drive.google.com/file/d/ID_S2_3_1/preview" },
+      { titolo: "Ep 2", link: "https://drive.google.com/file/d/ID_S2_3_2/preview" },
+    ],
+  },
+  "3": {
+    "1": [
+      { titolo: "Ep 1", link: "https://drive.google.com/file/d/ID_S3_1_1/preview" },
+      { titolo: "Ep 2", link: "https://drive.google.com/file/d/ID_S3_1_2/preview" },
+    ],
+    "2": [
+      { titolo: "Ep 1", link: "https://drive.google.com/file/d/ID_S3_2_1/preview" },
+      { titolo: "Ep 2", link: "https://drive.google.com/file/d/ID_S3_2_2/preview" },
+    ],
+    "3": [
+      { titolo: "Ep 1", link: "https://drive.google.com/file/d/ID_S3_3_1/preview" },
+      { titolo: "Ep 2", link: "https://drive.google.com/file/d/ID_S3_3_2/preview" },
+    ],
+  },
+  "4": {
+    "1": [
+      { titolo: "Ep 1", link: "https://drive.google.com/file/d/ID_S4_1_1/preview" },
+      { titolo: "Ep 2", link: "https://drive.google.com/file/d/ID_S4_1_2/preview" },
+    ],
+    "2": [
+      { titolo: "Ep 1", link: "https://drive.google.com/file/d/ID_S4_2_1/preview" },
+      { titolo: "Ep 2", link: "https://drive.google.com/file/d/ID_S4_2_2/preview" },
+    ],
+    "3": [
+      { titolo: "Ep 1", link: "https://drive.google.com/file/d/ID_S4_3_1/preview" },
+      { titolo: "Ep 2", link: "https://drive.google.com/file/d/ID_S4_3_2/preview" },
+    ],
+  },
+  "5": {
+    "1": [
+      { titolo: "Ep 1", link: "https://drive.google.com/file/d/ID_S5_1_1/preview" },
+      { titolo: "Ep 2", link: "https://drive.google.com/file/d/ID_S5_1_2/preview" },
+    ],
+    "2": [
+      { titolo: "Ep 1", link: "https://drive.google.com/file/d/ID_S5_2_1/preview" },
+      { titolo: "Ep 2", link: "https://drive.google.com/file/d/ID_S5_2_2/preview" },
+    ],
+    "3": [
+      { titolo: "Ep 1", link: "https://drive.google.com/file/d/ID_S5_3_1/preview" },
+      { titolo: "Ep 2", link: "https://drive.google.com/file/d/ID_S5_3_2/preview" },
+    ],
+  },
+  "6": {
+    "1": [
+      { titolo: "Ep 1", link: "https://drive.google.com/file/d/ID_S6_1_1/preview" },
+      { titolo: "Ep 2", link: "https://drive.google.com/file/d/ID_S6_1_2/preview" },
+    ],
+    "2": [
+      { titolo: "Ep 1", link: "https://drive.google.com/file/d/ID_S6_2_1/preview" },
+      { titolo: "Ep 2", link: "https://drive.google.com/file/d/ID_S6_2_2/preview" },
+    ],
+  },
+  "7": {
+    "1": [
+      { titolo: "Ep 1", link: "https://drive.google.com/file/d/ID_S7_1_1/preview" },
+      { titolo: "Ep 2", link: "https://drive.google.com/file/d/ID_S7_1_2/preview" },
+    ],
+    "2": [
+      { titolo: "Ep 1", link: "https://drive.google.com/file/d/ID_S7_2_1/preview" },
+      { titolo: "Ep 2", link: "https://drive.google.com/file/d/ID_S7_2_2/preview" },
+    ],
+  },
+  "8": {
+    "1": [
+      { titolo: "Ep 1", link: "https://drive.google.com/file/d/ID_S8_1_1/preview" },
+      { titolo: "Ep 2", link: "https://drive.google.com/file/d/ID_S8_1_2/preview" },
+    ],
+    "2": [
+      { titolo: "Ep 1", link: "https://drive.google.com/file/d/ID_S8_2_1/preview" },
+      { titolo: "Ep 2", link: "https://drive.google.com/file/d/ID_S8_2_2/preview" },
+    ],
+  },
+  "9": {
+    "1": [
+      { titolo: "Ep 1", link: "https://drive.google.com/file/d/ID_S9_1_1/preview" },
+      { titolo: "Ep 2", link: "https://drive.google.com/file/d/ID_S9_1_2/preview" },
+    ],
+    "2": [
+      { titolo: "Ep 1", link: "https://drive.google.com/file/d/ID_S9_2_1/preview" },
+      { titolo: "Ep 2", link: "https://drive.google.com/file/d/ID_S9_2_2/preview" },
+    ],
+  },
+  "10": {
+    "1": [
+      { titolo: "Ep 1", link: "https://drive.google.com/file/d/ID_S10_1_1/preview" },
+      { titolo: "Ep 2", link: "https://drive.google.com/file/d/ID_S10_1_2/preview" },
+    ],
+    "2": [
+      { titolo: "Ep 1", link: "https://drive.google.com/file/d/ID_S10_2_1/preview" },
+      { titolo: "Ep 2", link: "https://drive.google.com/file/d/ID_S10_2_2/preview" },
+    ],
+    "3": [
+      { titolo: "Ep 1", link: "https://drive.google.com/file/d/ID_S10_3_1/preview" },
+      { titolo: "Ep 2", link: "https://drive.google.com/file/d/ID_S10_3_2/preview" },
+    ],
+    "4": [
+      { titolo: "Ep 1", link: "https://drive.google.com/file/d/ID_S10_4_1/preview" },
+      { titolo: "Ep 2", link: "https://drive.google.com/file/d/ID_S10_4_2/preview" },
+    ],
+  },
+};
+
+function caricaSerie() {
+  const serieId = document.getElementById("serie").value;
+  const stagioniDiv = document.getElementById("stagioni");
+  const episodiDiv = document.getElementById("episodi");
+  stagioniDiv.innerHTML = "";
+  episodiDiv.innerHTML = "";
+  const stagioni = Object.keys(serieEpisodi[serieId]);
+
+  let select = '<label>Stagione:</label><select onchange="caricaEpisodi(this.value, '' + serieId + '')">';
+  stagioni.forEach(s => {
+    select += '<option value="' + s + '">Stagione ' + s + '</option>';
+  });
+  select += '</select>';
+  stagioniDiv.innerHTML = select;
+  caricaEpisodi(stagioni[0], serieId);
+}
+
+function caricaEpisodi(stagione, serieId) {
+  const episodiDiv = document.getElementById("episodi");
+  episodiDiv.innerHTML = "";
+  serieEpisodi[serieId][stagione].forEach(ep => {
+    episodiDiv.innerHTML += "<h3>" + ep.titolo + "</h3><iframe src='" + ep.link + "' width='640' height='360' allow='autoplay'></iframe><br>";
+  });
+}
+
+window.onload = caricaSerie;
+</script>
+</body>
+</html>
